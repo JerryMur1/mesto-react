@@ -68,3 +68,17 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+<div className="popup__container">
+            <form className="popup__content" name="content">
+                <button class="button button_type_close" type="button"><img src={Close} alt="Крестик закрытия" className="popup__close-icon"/></button>
+                <h2 className="popup__title">Новое место</h2>
+                <input required type="text" minlength="2" maxlength="30" name="firstname" id="name-card" className="popup__name popup__place_type_title" value="" placeholder="Название"/>
+                <span id="name-card-error" className="error" color="red"></span>
+                <input required type="url" name="secondname" id="link" className="popup__name popup__place_type_subtitle" value="" placeholder="Ссылка на картинку"/>
+                <span id="link-error" className="error"></span>
+                <button className="button button_type_save" type="submit" disabled='true'></button>
+            </form>
+            </div>
+  

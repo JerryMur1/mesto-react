@@ -1,17 +1,11 @@
-import Vector from '../images/Vector.svg'
+import Vector from "../images/Vector.svg";
 
-
-
-
-function Header(){
-    return(
-
-        <header className="header"> 
-            <img className="header__logo" alt="Место" src={Vector}/>
-            
-        </header>
-    )
+function Header() {
+  return (
+    <header className="header">
+      <img className="header__logo" alt="Место" src={Vector} />
+    </header>
+  );
 }
 
-
-export default Header 
+export default Header;

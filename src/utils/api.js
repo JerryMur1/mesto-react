@@ -1,8 +1,9 @@
 export class Api {
-  constructor({ baseUrl, headers, _id }) {
+  constructor({ baseUrl, headers}) {
     this._baseUrl = baseUrl;
     this._headers = headers;
-    this._id = _id;
+    
+
   }
 
   getInitialCards() {
@@ -17,8 +18,8 @@ export class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: data.firstname,
-        link: data.secondname,
+        name: data.name,
+        link: data.link,
       }),
     }).then(this._handleResOk);
   }
@@ -28,9 +29,8 @@ export class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: data.firstname,
-        about: data.secondname,
-        avatar: data.avatar,
+        name: data.name,
+        about: data.about
       }),
     }).then(this._handleResOk);
   }
@@ -57,24 +57,22 @@ export class Api {
   }
 
   deleteCard(_id) {
-    return fetch(this._baseUrl + _id, {
+    return fetch(this._baseUrl + "cards/" + _id, {
       method: "DELETE",
       headers: this._headers,
     }).then(this._handleResOk);
   }
 
-  likeCard(_id) {
-    return fetch(this._baseUrl + "cards" + "/" + "likes" + "/" + _id, {
-      method: "PUT",
+  likeCard(_id, like) {
+    // console.log(isLiked)
+    return fetch(`${this._baseUrl}cards/likes/${_id}`, {
+      method: like ? "PUT" : "DELETE",
       headers: this._headers,
+      
     }).then(this._handleResOk);
+    
   }
-  deleteLike(_id) {
-    return fetch(this._baseUrl + "cards" + "/" + "likes" + "/" + _id, {
-      method: "DELETE",
-      headers: this._headers,
-    }).then(this._handleResOk);
-  }
+
 
   _handleResOk(res) {
     if (res.ok) {

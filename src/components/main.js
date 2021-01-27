@@ -4,21 +4,27 @@ import Vector2 from "../images/Vector2.svg";
 import Vector3 from "../images/Vector3.svg";
 import Vector4 from "../images/Vector4.svg";
 import Close from "../images/Close-icon.svg";
-import Kusto from "../images/kusto.png";
-import Delete from "../images/Group.svg";
-// import api from '../utils/api';
 import Card from "./card";
+import api from "../utils/api";
+import React from 'react'
+import { CurrentUserContext } from '../context/CurrentUserContext'
 
 function Main({
   onCardClick,
   onEditProfile,
   onAddPlace,
   onEditAvatar,
-  userName,
-  userDescription,
-  userAvatar,
   cards,
-}) {
+  onCardLike,
+  handleDeleteCard,
+  
+}) 
+{ 
+  
+
+  const context = React.useContext(CurrentUserContext);
+  
+  
   return (
     <>
       <section className="profile">
@@ -28,15 +34,15 @@ function Main({
             <img
               className="profile__avatar"
               alt="Кусто"
-              src={userAvatar}
-              style={{ backgroundImage: `url(${userAvatar})` }}
+              src={context.avatar}
+              style={{ backgroundImage: `url(${context.avatar})` }}
             />
           </button>
         </div>
         <div className="profile__info">
           <div className="profile__text">
-            <h1 className="profile__title">{userName}</h1>
-            <p className="profile__subtitle">{userDescription}</p>
+            <h1 className="profile__title">{context.name}</h1>
+            <p className="profile__subtitle">{context.about}</p>
           </div>
           <button
             className="button button_type_edit"
@@ -60,8 +66,8 @@ function Main({
       </section>
 
       <section className="elements">
-        {cards.map(({ id, ...props }) => (
-          <Card key={id} {...props} onCardClick={onCardClick} />
+        {cards.map(({ _id, ...props }) => (
+          <Card key={_id} {...props} cardId={_id} onCardClick={onCardClick} onCardLike={onCardLike} onCardDelete={handleDeleteCard}/>
         ))}
       </section>
     </>

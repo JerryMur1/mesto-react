@@ -1,10 +1,10 @@
 import Close from "../images/Close-icon.svg";
 
-function PopupWithForm({ title, name, isOpen, children, onClose, button }) {
+function PopupWithForm({ title, name, isOpen, children, onClose, button, onSubmit }) {
   return (
     <section className={`popup popup_${name} ${isOpen}`}>
       <div className="popup__container">
-        <form className="popup__content" name={name}>
+        <form className="popup__content" name={name} onSubmit={onSubmit}>
           <button
             className="button button_type_close"
             onClick={onClose}
